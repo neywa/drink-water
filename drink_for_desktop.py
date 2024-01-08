@@ -20,7 +20,7 @@ checkfile()
 
 goal = 2500
 
-# Function to calculate the daily water consumption.
+# Function to calculate the daily water consumption. It's called by the 'Add to pool' button.
 # - Reads the data from drank file
 # - Checks the value inserted in the enter field
 # - Adds the inserted value to already consumed water and adds the sum to the file
@@ -35,6 +35,13 @@ def calculate(*args):
         drank.set('')
     except ValueError:
         pass
+
+# Function to reset the daily pool. It's called by the 'Reset pool' button.
+def resetpool(*args):
+    file = open("drank.txt", "w")
+    file.write("0")
+    file.close()
+    poolupdate.set("0")
 
 # Creating the graphical interface
 root = Tk()
@@ -57,11 +64,17 @@ with open("drank.txt", "r") as file:
 poolupdate = StringVar(root, poolcheck)
 ttk.Label(mainframe,textvariable=poolupdate).grid(column=2, row=2, sticky=(W, E))
 
-ttk.Button(mainframe, text="Add to pool", command=calculate).grid(column=3, row=3, sticky=W)
+ttk.Button(mainframe, text="Add to pool", command=calculate).grid(column=4, row=1, sticky=W)
+ttk.Button(mainframe, text="Reset pool", command=resetpool).grid(column=4, row=2, sticky=W)
 
 ttk.Label(mainframe, text="ml").grid(column=3, row=1, sticky=W)
 ttk.Label(mainframe, text="Today you drank").grid(column=1, row=2, sticky=E)
 ttk.Label(mainframe, text="ml").grid(column=3, row=2, sticky=W)
+
+# Prep work for 'remains from goal' feature.
+#remains = StringVar()
+#ttk.Label(mainframe, textvariable=remains).grid(column=1, row=3, sticky=W)
+#ttk.Label(mainframe, text="Remains from goal").grid(column=1, row=3, sticky=W)
 
 for child in mainframe.winfo_children():
     child.grid_configure(padx=5, pady=5)
