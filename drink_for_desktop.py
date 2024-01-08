@@ -32,6 +32,7 @@ def calculate(*args):
         file = open("drank.txt", "w")
         file.write(poolupdate.get())
         file.close()
+        drank.set('')
     except ValueError:
         pass
 
@@ -48,7 +49,12 @@ drank = StringVar()
 drank_entry = ttk.Entry(mainframe, width=7, textvariable=drank)
 drank_entry.grid(column=2, row=1, sticky=(W, E))
 
-poolupdate = StringVar()
+# Check if the db file already exists and contains some data.
+# If yes, the data are displayed as the amount af water already drinked today.
+with open("drank.txt", "r") as file:
+    poolcheck=file.read().rstrip()
+
+poolupdate = StringVar(root, poolcheck)
 ttk.Label(mainframe,textvariable=poolupdate).grid(column=2, row=2, sticky=(W, E))
 
 ttk.Button(mainframe, text="Add to pool", command=calculate).grid(column=3, row=3, sticky=W)
