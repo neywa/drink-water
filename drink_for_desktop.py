@@ -1,3 +1,4 @@
+# Author: Neywa
 # This is a short program to count the amount of liquids you drink during a day.
 # The db file (drank.txt) needs to be cleared every day before new use.
 
