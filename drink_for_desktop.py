@@ -79,6 +79,7 @@ ttk.Label(mainframe, text="ml").grid(column=3, row=2, sticky=W)
 for child in mainframe.winfo_children():
     child.grid_configure(padx=5, pady=5)
 drank_entry.focus()
-root.bind("<Return>", calculate)
+root.bind('<Return>', calculate)
+root.bind('<KP_Enter>', calculate)
 
 root.mainloop()
