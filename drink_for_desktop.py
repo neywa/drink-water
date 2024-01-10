@@ -72,9 +72,10 @@ ttk.Label(mainframe, text="Today you drank").grid(column=1, row=2, sticky=E)
 ttk.Label(mainframe, text="ml").grid(column=3, row=2, sticky=W)
 
 # Prep work for 'remains from goal' feature.
-#remains = StringVar()
+#remaining = goal - updatedpool
+#remains = StringVar(root, remaining)
 #ttk.Label(mainframe, textvariable=remains).grid(column=1, row=3, sticky=W)
-#ttk.Label(mainframe, text="Remains from goal").grid(column=1, row=3, sticky=W)
+#ttk.Label(mainframe, text="ml remains from your daily goal").grid(column=2, row=3, columnspan=3, sticky=W)
 
 for child in mainframe.winfo_children():
     child.grid_configure(padx=5, pady=5)
